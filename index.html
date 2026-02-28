@@ -377,4 +377,7 @@
       requestAnimationFrame(tick);
     }
     const counterEl = document.getElementById('counter');
-    new Intersection
+    new IntersectionObserver(entries => { if (entries[0].isIntersecting) animateCounter(counterEl, 84200); }, { threshold: 0.5 }).observe(counterEl);
+  </script>
+</body>
+</html>
