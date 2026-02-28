@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ── PRIMARY SEO ── -->
+  <title>Harbor — Free Net Worth Calculator. Know Where You Stand.</title>
+  <meta name="description" content="Harbor is a free net worth calculator. Enter what you own and what you owe — get one honest number in minutes. No bank login. No advice. No noise. Coming soon to iOS, Android, and web." />
+  <meta name="keywords" content="net worth calculator, free net worth tracker, personal finance app, calculate net worth, assets and liabilities, financial awareness, net worth app" />
+  <link rel="canonical" href="https://harbornetworthapp.netlify.app/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Harbor Net Worth App" />
+
+  <!-- ── OPEN GRAPH ── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://harbornetworthapp.netlify.app/" />
+  <meta property="og:title" content="Harbor — Free Net Worth Calculator" />
+  <meta property="og:description" content="Know exactly where you stand financially. Harbor calculates your net worth in minutes — no bank login required. Coming soon." />
+  <meta property="og:site_name" content="Harbor Net Worth App" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- ── TWITTER CARD ── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Harbor — Free Net Worth Calculator" />
+  <meta name="twitter:description" content="Know exactly where you stand financially. Harbor calculates your net worth in minutes — no bank login required. Coming soon." />
+  <meta name="twitter:site" content="@harborapp" />
+
+  <!-- ── STRUCTURED DATA ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Harbor",
+    "alternateName": "Harbor Net Worth Calculator",
+    "description": "A free personal net worth calculator. Enter your assets and liabilities and get one honest number. Educational tool only — not financial advice.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "iOS, Android, Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "creator": { "@type": "Organization", "name": "Harbor Net Worth App", "email": "harbornetworthapp@gmail.com" },
+    "url": "https://harbornetworthapp.netlify.app/"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0a0f1e; --ink-mid: #0f1729; --ink-light: #1a2540;
+      --horizon: #2a3f6f; --water: #3a6ea8; --mist: #7a9cc4;
+      --fog: #a8bdd4; --salt: #e8eef5; --white: #f5f8fc;
+      --gold: #c9a84c; --gold-light: #e2c97e;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --max: 1100px; --gutter: clamp(1.5rem, 5vw, 4rem);
+    }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--ink); color: var(--salt); font-family: var(--sans); font-weight: 300; font-size: 1rem; line-height: 1.7; min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; pointer-events: none; z-index: 0; }
+    body::after { content: ''; position: fixed; bottom: -40vh; left: 50%; transform: translateX(-50%); width: 80vw; height: 60vh; background: radial-gradient(ellipse at center, rgba(42,63,111,0.35) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+    .wrap { position: relative; z-index: 1; width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem var(--gutter); display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(10,15,30,0.95) 0%, transparent 100%); backdrop-filter: blur(4px); }
+    .nav-logo { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; letter-spacing: 0.04em; color: var(--white); text-decoration: none; }
+    .nav-badge { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.35); padding: 0.3rem 0.8rem; border-radius: 2rem; }
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem var(--gutter) 6rem; }
+    .hero-horizon { position: absolute; left: 0; right: 0; bottom: 38%; height: 1px; background: linear-gradient(to right, transparent 0%, rgba(58,110,168,0.0) 10%, rgba(58,110,168,0.4) 35%, rgba(201,168,76,0.5) 50%, rgba(58,110,168,0.4) 65%, rgba(58,110,168,0.0) 90%, transparent 100%); animation: horizonPulse 6s ease-in-out infinite; }
+    @keyframes horizonPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+    .hero-content { max-width: 780px; }
+    .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.6rem; opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s; }
+    .hero-title { font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 300; line-height: 1.0; color: var(--white); margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.9s ease forwards 0.4s; }
+    .hero-title em { font-style: italic; color: var(--fog); }
+    .hero-tagline { font-family: var(--serif); font-size: clamp(1.25rem, 2.5vw, 1.65rem); font-weight: 300; font-style: italic; color: var(--mist); margin-bottom: 2.4rem; opacity: 0; animation: fadeUp 1s ease forwards 0.6s; }
+    .hero-description { font-size: 1.05rem; font-weight: 300; color: var(--fog); max-width: 520px; line-height: 1.75; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s ease forwards 0.8s; }
+    .form-wrap { opacity: 0; animation: fadeUp 1s ease forwards 1s; }
+    .form-label { display: block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mist); margin-bottom: 0.75rem; }
+    .form-row { display: flex; max-width: 480px; border: 1px solid rgba(122,156,196,0.25); border-radius: 3px; overflow: hidden; transition: border-color 0.3s; }
+    .form-row:focus-within { border-color: rgba(201,168,76,0.5); box-shadow: 0 0 0 3px rgba(201,168,76,0.08); }
+    .form-input { flex: 1; background: rgba(26,37,64,0.6); border: none; outline: none; padding: 0.85rem 1.1rem; font-family: var(--sans); font-size: 0.95rem; font-weight: 300; color: var(--white); min-width: 0; }
+    .form-input::placeholder { color: rgba(168,189,212,0.45); }
+    .form-btn { background: var(--gold); border: none; padding: 0.85rem 1.4rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); cursor: pointer; white-space: nowrap; transition: background 0.2s, transform 0.1s; }
+    .form-btn:hover { background: var(--gold-light); }
+    .form-btn:active { transform: scale(0.98); }
+    .form-note { margin-top: 0.7rem; font-size: 0.75rem; color: rgba(168,189,212,0.5); }
+    .form-success { display: none; padding: 0.85rem 1.2rem; background: rgba(42,63,111,0.4); border: 1px solid rgba(201,168,76,0.3); border-radius: 3px; max-width: 480px; font-size: 0.9rem; color: var(--gold-light); }
+    .section-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(42,63,111,0.6) 30%, rgba(42,63,111,0.6) 70%, transparent); }
+    .how { padding: 7rem var(--gutter); position: relative; z-index: 1; }
+    .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .section-heading { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--white); margin-bottom: 4rem; line-height: 1.2; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+    @media (max-width: 700px) { .steps { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .step { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .step.visible { opacity: 1; transform: translateY(0); }
+    .step:nth-child(2) { transition-delay: 0.15s; } .step:nth-child(3) { transition-delay: 0.3s; }
+    .step-number { font-family: var(--serif); font-size: 3.5rem; font-weight: 300; color: rgba(42,63,111,0.6); line-height: 1; margin-bottom: 1rem; }
+    .step-line { width: 2rem; height: 1px; background: var(--gold); margin-bottom: 1.2rem; }
+    .step-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--white); margin-bottom: 0.6rem; }
+    .step-body { font-size: 0.92rem; font-weight: 300; color: var(--fog); line-height: 1.7; }
+    .preview { padding: 7rem var(--gutter); position: relative; z-index: 1; overflow: hidden; }
+    .preview-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    @media (max-width: 800px) { .preview-inner { grid-template-columns: 1fr; gap: 3rem; } .preview-phones { justify-content: center; } }
+    .preview-text .section-heading { margin-bottom: 1.2rem; font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+    .preview-description { font-size: 0.97rem; color: var(--fog); line-height: 1.75; margin-bottom: 1.6rem; }
+    .preview-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .preview-pill { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; color: var(--mist); border: 1px solid rgba(122,156,196,0.25); padding: 0.3rem 0.75rem; border-radius: 2rem; }
+    .preview-phones { display: flex; gap: 1.5rem; align-items: flex-end; justify-content: flex-end; }
+    .phone { width: 200px; border-radius: 28px; background: #0d1628; border: 1.5px solid rgba(58,110,168,0.4); box-shadow: 0 32px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06); overflow: hidden; position: relative; flex-shrink: 0; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .phone.visible { opacity: 1; transform: translateY(0); }
+    .phone:nth-child(2) { transform: translateY(20px); transition-delay: 0.2s; }
+    .phone:nth-child(2).visible { transform: translateY(-16px); }
+    .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 22px; background: #0d1628; border-radius: 0 0 14px 14px; z-index: 10; }
+    .phone-screen { padding: 36px 16px 20px; min-height: 400px; display: flex; flex-direction: column; }
+    .screen-status { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .screen-time { font-size: 11px; font-weight: 500; color: var(--fog); }
+    .screen-icons { display: flex; gap: 4px; align-items: center; }
+    .screen-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(168,189,212,0.4); }
+    .screen-dot.active { background: var(--mist); }
+    .screen-greeting { font-size: 11px; color: rgba(168,189,212,0.5); margin-bottom: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .screen-label { font-size: 10px; color: rgba(168,189,212,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .screen-number { font-family: var(--serif); font-size: 36px; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 4px; }
+    .screen-change { font-size: 10px; color: #6ec97a; margin-bottom: 20px; }
+    .screen-divider { height: 1px; background: rgba(42,63,111,0.5); margin-bottom: 16px; }
+    .screen-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .screen-row-label { font-size: 10px; color: var(--fog); }
+    .screen-row-value { font-size: 10px; font-weight: 500; color: var(--salt); }
+    .screen-row-value.liability { color: rgba(220,100,100,0.9); }
+    .screen-bar-wrap { margin-bottom: 18px; }
+    .screen-bar-label { display: flex; justify-content: space-between; margin-bottom: 5px; }
+    .screen-bar-label span { font-size: 9px; color: rgba(168,189,212,0.5); }
+    .screen-bar-track { height: 3px; background: rgba(42,63,111,0.4); border-radius: 2px; overflow: hidden; }
+    .screen-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(to right, var(--water), var(--gold)); }
+    .screen-goal { background: rgba(42,63,111,0.25); border: 1px solid rgba(42,63,111,0.4); border-radius: 8px; padding: 10px 12px; margin-top: auto; }
+    .screen-goal-label { font-size: 9px; color: rgba(168,189,212,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .screen-goal-row { display: flex; justify-content: space-between; align-items: center; }
+    .screen-goal-value { font-size: 11px; font-weight: 500; color: var(--gold); }
+    .screen-goal-pct { font-size: 10px; color: var(--mist); }
+    .screen-back { font-size: 10px; color: var(--mist); margin-bottom: 14px; }
+    .screen-section-title { font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--white); margin-bottom: 4px; }
+    .screen-section-sub { font-size: 9px; color: rgba(168,189,212,0.45); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .screen-entry { background: rgba(26,37,64,0.5); border: 1px solid rgba(42,63,111,0.35); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+    .screen-entry-cat { font-size: 9px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+    .screen-entry-row { display: flex; justify-content: space-between; align-items: center; }
+    .screen-entry-name { font-size: 11px; color: var(--salt); }
+    .screen-entry-val { font-size: 11px; font-weight: 500; color: var(--white); }
+    .screen-add { display: flex; align-items: center; justify-content: center; gap: 6px; border: 1px dashed rgba(42,63,111,0.5); border-radius: 8px; padding: 9px; margin-bottom: 16px; }
+    .screen-add-text { font-size: 10px; color: rgba(168,189,212,0.4); }
+    .screen-add-icon { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(168,189,212,0.3); display: flex; align-items: center; justify-content: center; }
+    .screen-add-plus { font-size: 10px; color: rgba(168,189,212,0.4); line-height: 1; margin-top: -1px; }
+    .screen-save-btn { width: 100%; background: var(--gold); border: none; border-radius: 8px; padding: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-align: center; margin-top: auto; }
+    .number-section { padding: 6rem var(--gutter); position: relative; z-index: 1; text-align: center; }
+    .number-display { font-family: var(--serif); font-size: clamp(4rem, 12vw, 9rem); font-weight: 300; color: transparent; background: linear-gradient(135deg, var(--water) 0%, var(--white) 50%, var(--gold) 100%); -webkit-background-clip: text; background-clip: text; line-height: 1; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .number-caption { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist); margin-bottom: 2.5rem; }
+    .number-description { font-family: var(--serif); font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 300; font-style: italic; color: var(--fog); max-width: 580px; margin: 0 auto; line-height: 1.6; }
+    .principles { padding: 6rem var(--gutter); position: relative; z-index: 1; }
+    .principles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(42,63,111,0.3); border: 1px solid rgba(42,63,111,0.3); }
+    @media (max-width: 600px) { .principles-grid { grid-template-columns: 1fr; } }
+    .principle { padding: 2.2rem 2rem; background: var(--ink); transition: background 0.3s; }
+    .principle:hover { background: var(--ink-mid); }
+    .principle-icon { font-family: var(--serif); font-size: 1.6rem; color: var(--gold); margin-bottom: 0.8rem; }
+    .principle-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--white); margin-bottom: 0.4rem; }
+    .principle-body { font-size: 0.88rem; font-weight: 300; color: var(--fog); line-height: 1.65; }
+    .cta { padding: 8rem var(--gutter); text-align: center; position: relative; z-index: 1; }
+    .cta::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(42,63,111,0.25) 0%, transparent 70%); pointer-events: none; }
+    .cta-heading { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; color: var(--white); line-height: 1.15; margin-bottom: 1rem; }
+    .cta-sub { font-size: 1rem; font-weight: 300; color: var(--fog); margin-bottom: 2.5rem; }
+    .cta .form-row { margin: 0 auto; }
+    .cta .form-note { text-align: center; }
+    footer { position: relative; z-index: 1; border-top: 1px solid rgba(42,63,111,0.3); padding: 2.5rem var(--gutter); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--serif); font-size: 1.1rem; color: var(--fog); }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.06em; color: rgba(168,189,212,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--fog); }
+    .footer-copy { width: 100%; font-size: 0.73rem; color: rgba(168,189,212,0.3); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--ink); } ::-webkit-scrollbar-thumb { background: var(--horizon); border-radius: 3px; }
+    ::selection { background: rgba(201,168,76,0.2); color: var(--white); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Harbor</a>
+    <span class="nav-badge">Coming Soon</span>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-horizon"></div>
+    <div class="wrap">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Free Net Worth Calculator</p>
+        <h1 class="hero-title">Know where<br><em>you stand.</em></h1>
+        <p class="hero-tagline">Your net worth, clear as day.</p>
+        <p class="hero-description">Harbor calculates your net worth in minutes. Enter what you own and what you owe — Harbor gives you one honest number. No advice. No noise. Just clarity.</p>
+        <div class="form-wrap">
+          <label class="form-label" for="email-hero">Be first to know when we launch</label>
+          <div class="form-row" id="hero-form-row">
+            <input id="email-hero" class="form-input" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Email address" />
+            <button class="form-btn" onclick="handleSignup('email-hero','hero-form-row','hero-success')">Notify Me</button>
+          </div>
+          <div class="form-success" id="hero-success">You're on the list. We'll be in touch when Harbor is ready.</div>
+          <p class="form-note">No spam. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="how" id="how">
+    <div class="wrap">
+      <p class="section-label">How it works</p>
+      <h2 class="section-heading">Two minutes.<br>One honest number.</h2>
+      <div class="steps">
+        <div class="step" data-scroll>
+          <div class="step-number">01</div>
+          <div class="step-line"></div>
+          <h3 class="step-title">Add your assets</h3>
+          <p class="step-body">Enter what you own — savings, investments, property, vehicles. Harbor organizes them clearly.</p>
+        </div>
+        <div class="step" data-scroll>
+          <div class="step-number">02</div>
+          <div class="step-line"></div>
+          <h3 class="step-title">Add your liabilities</h3>
+          <p class="step-body">Enter what you owe — loans, mortgages, credit cards, any outstanding obligations.</p>
+        </div>
+        <div class="step" data-scroll>
+          <div class="step-number">03</div>
+          <div class="step-line"></div>
+          <h3 class="step-title">See your number</h3>
+          <p class="step-body">Harbor calculates the difference and shows you one clear net worth figure — updated every time you save.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="preview" id="preview">
+    <div class="wrap">
+      <div class="preview-inner">
+        <div class="preview-text" data-scroll>
+          <p class="section-label">First look</p>
+          <h2 class="section-heading">Your number,<br><em style="font-style:italic;color:var(--fog)">finally.</em></h2>
+          <p class="preview-description">Harbor is built around one idea — your net worth should be simple to see. One screen, one number, everything you need and nothing you don't.</p>
+          <p class="preview-description">Track your progress over time, set a goal, and come back whenever you need to know where you stand.</p>
+          <div class="preview-pills">
+            <span class="preview-pill">Net worth dashboard</span>
+            <span class="preview-pill">Goal tracking</span>
+            <span class="preview-pill">History over time</span>
+            <span class="preview-pill">Manual entry</span>
+            <span class="preview-pill">No bank login required</span>
+          </div>
+        </div>
+        <div class="preview-phones">
+          <div class="phone" data-phone>
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="screen-status"><span class="screen-time">9:41</span><div class="screen-icons"><div class="screen-dot active"></div><div class="screen-dot active"></div><div class="screen-dot"></div></div></div>
+              <div class="screen-greeting">Harbor</div>
+              <div class="screen-label">Net Worth</div>
+              <div class="screen-number">$84,200</div>
+              <div class="screen-change">↑ $3,400 this month</div>
+              <div class="screen-divider"></div>
+              <div class="screen-row"><span class="screen-row-label">Total Assets</span><span class="screen-row-value">$142,500</span></div>
+              <div class="screen-row"><span class="screen-row-label">Total Liabilities</span><span class="screen-row-value liability">$58,300</span></div>
+              <div class="screen-divider"></div>
+              <div class="screen-bar-wrap"><div class="screen-bar-label"><span>Assets</span><span>71%</span></div><div class="screen-bar-track"><div class="screen-bar-fill" style="width:71%"></div></div></div>
+              <div class="screen-goal"><div class="screen-goal-label">Goal</div><div class="screen-goal-row"><span class="screen-goal-value">$100,000</span><span class="screen-goal-pct">84% there</span></div></div>
+            </div>
+          </div>
+          <div class="phone" data-phone>
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="screen-status"><span class="screen-time">9:41</span><div class="screen-icons"><div class="screen-dot active"></div><div class="screen-dot active"></div><div class="screen-dot"></div></div></div>
+              <div class="screen-back">← Assets</div>
+              <div class="screen-section-title">Your Assets</div>
+              <div class="screen-section-sub">Enter what you own</div>
+              <div class="screen-entry"><div class="screen-entry-cat">Cash</div><div class="screen-entry-row"><span class="screen-entry-name">Checking</span><span class="screen-entry-val">$4,200</span></div></div>
+              <div class="screen-entry"><div class="screen-entry-cat">Investments</div><div class="screen-entry-row"><span class="screen-entry-name">401(k)</span><span class="screen-entry-val">$38,000</span></div></div>
+              <div class="screen-entry"><div class="screen-entry-cat">Real Estate</div><div class="screen-entry-row"><span class="screen-entry-name">Home (est.)</span><span class="screen-entry-val">$92,000</span></div></div>
+              <div class="screen-add"><div class="screen-add-icon"><span class="screen-add-plus">+</span></div><span class="screen-add-text">Add asset</span></div>
+              <div class="screen-save-btn">Save &amp; Calculate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="number-section">
+    <div class="wrap">
+      <div class="number-display" id="counter">$0</div>
+      <p class="number-caption">Your net worth, calculated instantly</p>
+      <p class="number-description">Most people have a rough sense of what they own and what they owe. Harbor turns that rough sense into a single, honest number.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="principles">
+    <div class="wrap">
+      <p class="section-label">Built different</p>
+      <h2 class="section-heading" style="margin-bottom:2.5rem">What Harbor is.<br>What it isn't.</h2>
+      <div class="principles-grid">
+        <div class="principle"><div class="principle-icon">◎</div><h3 class="principle-title">One thing, done right</h3><p class="principle-body">Harbor doesn't budget, advise, predict, or upsell. It calculates your net worth. That's the whole job.</p></div>
+        <div class="principle"><div class="principle-icon">◈</div><h3 class="principle-title">Private by design</h3><p class="principle-body">Your financial data is yours. We don't sell it, share it, or use it to show you ads. What you put into Harbor stays in Harbor.</p></div>
+        <div class="principle"><div class="principle-icon">◇</div><h3 class="principle-title">No account required</h3><p class="principle-body">Use Harbor without signing up for anything. An optional account exists only to sync your data across devices.</p></div>
+        <div class="principle"><div class="principle-icon">◉</div><h3 class="principle-title">Honestly educational</h3><p class="principle-body">Harbor is a financial education tool, not a financial advisor. We show you the number. What you do with it is yours.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="cta" id="notify">
+    <div class="wrap">
+      <h2 class="cta-heading">Ready to know<br><em style="font-style:italic;color:var(--fog)">your number?</em></h2>
+      <p class="cta-sub">Harbor is coming soon. Get notified the day we launch.</p>
+      <label class="form-label" for="email-cta" style="display:block;margin-bottom:0.75rem">Your email address</label>
+      <div class="form-row" id="cta-form-row">
+        <input id="email-cta" class="form-input" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Email address" />
+        <button class="form-btn" onclick="handleSignup('email-cta','cta-form-row','cta-success')">Notify Me</button>
+      </div>
+      <div class="form-success" id="cta-success" style="margin:0 auto">You're on the list. We'll be in touch when Harbor is ready.</div>
+      <p class="form-note" style="text-align:center">No spam. Unsubscribe anytime. Harbor is an educational tool — not financial advice.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-brand">Harbor</span>
+    <div class="footer-links">
+      <a href="disclaimer.html">Financial Disclaimer</a>
+      <a href="mailto:harbornetworthapp@gmail.com">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Harbor Net Worth App. Harbor is an educational tool and does not provide financial advice. Not affiliated with any financial institution.</p>
+  </footer>
+
+  <script>
+    function handleSignup(inputId, formRowId, successId) {
+      const input = document.getElementById(inputId);
+      const formRow = document.getElementById(formRowId);
+      const success = document.getElementById(successId);
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.outline = '2px solid rgba(201,100,100,0.6)';
+        input.focus();
+        setTimeout(() => { input.style.outline = ''; }, 2000);
+        return;
+      }
+      // ── Replace with Mailchimp fetch() when ready ──
+      console.log('Email captured:', email);
+      formRow.style.display = 'none';
+      success.style.display = 'block';
+    }
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') input.closest('.form-row').querySelector('.form-btn').click(); });
+    });
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: 0.15 });
+    document.querySelectorAll('[data-scroll], [data-phone]').forEach(el => observer.observe(el));
+    function animateCounter(el, target, duration = 2200) {
+      const start = performance.now();
+      function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        el.textContent = '$' + Math.round(Math.abs(target) * easeOutQuart(p)).toLocaleString('en-US');
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = '$' + Math.abs(target).toLocaleString('en-US');
+      }
+      requestAnimationFrame(tick);
+    }
+    const counterEl = document.getElementById('counter');
+    new IntersectionObserver(entries => { if (entries[0].isIntersecting) animateCounter(counterEl, 84200); }, { threshold: 0.5 }).observe(counterEl);
+  </script>
+</body>
+</html>
