@@ -1,0 +1,13 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "index, follow"
+
+[build]
+  publish = "."
+```
+
+And also create a file called `_headers` with this content:
+```
+/*
+  X-Content-Type-Options: nosniff
