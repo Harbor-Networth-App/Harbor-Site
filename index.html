@@ -176,6 +176,13 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
     ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--ink); } ::-webkit-scrollbar-thumb { background: var(--horizon); border-radius: 3px; }
     ::selection { background: rgba(201,168,76,0.2); color: var(--white); }
+    @media (max-width: 500px) {
+  .preview-phones { flex-direction: column; align-items: center; }
+  .phone:nth-child(2) { display: none; }
+  .phone { width: 85vw; max-width: 300px; }
+  .nav-logo svg { height: 52px; }
+  .hero-title { font-size: clamp(2.8rem, 8vw, 7rem); }
+}
   </style>
 </head>
 <body>
